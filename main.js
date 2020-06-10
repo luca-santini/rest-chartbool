@@ -1,26 +1,31 @@
 $(document).ready(function() {
-  $.ajax({
-      'url': '157.230.17.132:4027/sales',
-      'method': 'GET',
-      'success': function(data) {
-          console.log(data);
-        },
-        'error': function() {
-          console.log('errore');
-      }
-  })
+
+        $.ajax({
+          'url': 'http://157.230.17.132:4027/sales',
+          'method': 'GET',
+          'success': function(data) {
+              var sales = data;
+                // oggetto senza contenuto {}
+              for (var i = 0; i < sales.length; i++) {
+                  var sale = sales[i];
+
+                  var mese = moment(sale.date, "DD/MM/YYYY").format('MMMM');
+                  // console.log(mese);
+                  var vendite = (sale.amount);
+                  // console.log(vendite);
+
+                  var vendite_mese = [
+                      {
+                        "mese": mese,
+                        "vendite": vendite
+                  }
+              ];
+              console.log(vendite_mese);
+
+              } // ciclo for
+            },
+            'error': function() {
+                alert('si è verificato un errore');
+          }
+      });
 })
-// "sales": [
-//     {
-//     "id": 1,
-//     "salesman": "Marco",
-//     "amount": 9000,
-//     "date": "12/02/2017"
-//     },
-//     {
-//     "id": 2,
-//     "salesman" : "Giuseppe",
-//     "amount": 1000,
-//     "date": "12/04/2017"
-//      }
-//   ]
