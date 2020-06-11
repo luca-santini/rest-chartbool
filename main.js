@@ -28,7 +28,22 @@ $(document).ready(function() {
           }
      });
 
+     // funzione post
+     $.ajax ({
+         'url': url_api,
+         'method': 'POST',
+         'data':
+         {
+         'salesman': salesman,
+         'date': date,
+        },
+         'success': function(data){
 
+         },
+         'error': function() {
+             console.log('si è verificato un errore');
+       }
+     });
      function prepara_dati_vendite_mensili(dati) {
          var vendite_mensili = {
              'gennaio': 0,

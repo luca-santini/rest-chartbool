@@ -8,6 +8,29 @@
         <script src="https://momentjs.com/downloads/moment-with-locales.js"></script>
     </head>
     <body>
+      <div class="input-container">
+        <select class="salesman" name="">
+          <option value="marco">Marco</option>
+          <option value="giuseppe">Giuseppe</option>
+          <option value="riccardo">Riccardo</option>
+          <option value="roberto">Roberto</option>
+        </select>
+        <select class="month" name="">
+          <option value="01">January</option>
+          <option value="02">February</option>
+          <option value="03">March</option>
+          <option value="04">April</option>
+          <option value="05">May</option>
+          <option value="06">June</option>
+          <option value="07">July</option>
+          <option value="08">August</option>
+          <option value="09">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12">December</option>
+        </select>
+        <button type="button" name="button">Submit</button>
+    </div> <!-- end input-container -->
 
             <div id="vendite-mensili" class="chart-container">
                 <h1>Vendite totali ripartite tra i mesi del 2017</h1>
@@ -17,7 +40,14 @@
                  <h1>Vendite totali ripartite tra i venditori</h1>
                 <canvas id="grafico-vendite-venditori"></canvas>
             </div>
-
+        <p class="milestone">Milestone 2:
+            <ul>
+                <li class="strike">dare  la possibilità di aggiungere vendite.</li>
+                <li> Creiamo due select, una contenente i nostri venditori e l’altra contenente i mese dell’anno e una input per inserire il valore della vendita.</li>
+                <li>Aggiungiamo un bottone e onClick dovremo aggiungere una vendita del valore inserito al venditore selezionato per il mese selezionato, facendo una chiamata POST a /sales.</li>
+                <li>I grafici andranno modificati mostrando i nuovi dati</li>
+            </ul>
+        </p>
 
         <script src="main.js"></script>
     </body>
