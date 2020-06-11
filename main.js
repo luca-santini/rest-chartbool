@@ -46,17 +46,20 @@ $(document).ready(function() {
          for (var i = 0; i < dati.length; i++) {
             // recupero la vendita corrente
             var vendita_corrente = dati[i];
-            // recupero l'importo della vendita corrente
-            var importo_corrente = vendita_corrente.amount;
-            // recupero la data della vendita corrente
-            var data_corrente = vendita_corrente.date;
-            // costruisco l'oggetto moment a partire dalla data della vendita corrente
-            var data_corrente_moment = moment(data_corrente, 'DD/MM/YYYY');
-            // estraggo il mese in formato testuale esteso
-            var mese_corrente = data_corrente_moment.format('MMMM');
-            // tramite il mese, incremento il totale delle vendite di questo mese
-            vendite_mensili[mese_corrente] += importo_corrente;
-         }
+            if (vendita_corrente.amount && vendita_corrente.salesman) {
+                // recupero l'importo della vendita corrente
+                var importo_corrente = vendita_corrente.amount;
+                // recupero la data della vendita corrente
+                var data_corrente = vendita_corrente.date;
+                // costruisco l'oggetto moment a partire dalla data della vendita corrente
+                var data_corrente_moment = moment(data_corrente, 'DD/MM/YYYY');
+                // estraggo il mese in formato testuale esteso
+                var mese_corrente = data_corrente_moment.format('MMMM');
+                // tramite il mese, incremento il totale delle vendite di questo mese
+                vendite_mensili[mese_corrente] += importo_corrente;
+             }
+            }
+
          return vendite_mensili;
      }
      function prepara_dati_vendite_venditori(dati) {
@@ -66,22 +69,25 @@ $(document).ready(function() {
         for (var i = 0; i < dati.length; i++) {
             // recupero la vendita corrente
             var vendita_corrente = dati[i];
-            // recupero l'importo della vendita corrente
-            var importo_corrente = parseInt(vendita_corrente.amount);
-            // recupero il nome del venditore della vendita corrente
-            var nome_corrente = vendita_corrente.salesman;
-            // verifico se ho già trovato questo venditore nelle iterazioni precedenti
-            if(vendite_venditori.hasOwnProperty(nome_corrente)) {
-                // la chiave per questo venditore è già definita
-                // incremento il suo totale con l'importo della vendita corrente
-                vendite_venditori[nome_corrente] += importo_corrente;
-            } else {
-                // la chiave con il nome di questo venditore non esiste
-                // non ho ancora incontrato questo venditore in nessuna iterazione precedente
-                // definisco la chiave per questo venditore
-                // e assegno il valore della vendita corrente
-                vendite_venditori[nome_corrente] = importo_corrente;
+            if(vendita_corrente.amount && vendita_corrente.salesman) {
+                // recupero l'importo della vendita corrente
+                var importo_corrente = parseInt(vendita_corrente.amount);
+                // recupero il nome del venditore della vendita corrente
+                var nome_corrente = vendita_corrente.salesman;
+                // verifico se ho già trovato questo venditore nelle iterazioni precedenti
+                if(vendite_venditori.hasOwnProperty(nome_corrente)) {
+                    // la chiave per questo venditore è già definita
+                    // incremento il suo totale con l'importo della vendita corrente
+                    vendite_venditori[nome_corrente] += importo_corrente;
+                } else {
+                    // la chiave con il nome di questo venditore non esiste
+                    // non ho ancora incontrato questo venditore in nessuna iterazione precedente
+                    // definisco la chiave per questo venditore
+                    // e assegno il valore della vendita corrente
+                    vendite_venditori[nome_corrente] = importo_corrente;
+                }
             }
+
             // incremento il totale delle vendite con l'importo corrente
             totale_vendite += importo_corrente;
         }
