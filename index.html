@@ -2,15 +2,22 @@
     <head>
         <meta charset="utf-8">
         <title>ChartBool</title>
+        <link rel="stylesheet" href="style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
         <script src="https://momentjs.com/downloads/moment-with-locales.js"></script>
     </head>
     <body>
-        <div id="vendite-mensili">
-            <h1>Vendite totali ripartite tra i mesi del 2017</h1>
-            <canvas id="grafico-vendite-mensili"></canvas>
-        </div>
+
+            <div id="vendite-mensili" class="chart-container">
+                <h1>Vendite totali ripartite tra i mesi del 2017</h1>
+                <canvas id="grafico-vendite-mensili"></canvas>
+            </div>
+            <div id="vendite-venditori" class="chart-container">
+                 <h1>Vendite totali ripartite tra i venditori</h1>
+                <canvas id="grafico-vendite-venditori"></canvas>
+            </div>
+
 
         <script src="main.js"></script>
     </body>
